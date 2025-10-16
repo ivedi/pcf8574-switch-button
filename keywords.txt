@@ -1,0 +1,8 @@
+Pcf8574SwitchButton KEYWORD1
+buttonPin KEYWORD1
+buttonId KEYWORD1
+pressed KEYWORD1
+released KEYWORD1
+
+begin KEYWORD2
+stateChanged KEYWORD2
