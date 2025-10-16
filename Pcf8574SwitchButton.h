@@ -12,9 +12,10 @@
 class Pcf8574SwitchButton
 {
   public:
-    Pcf8574SwitchButton(PCF8574 *pcf8574, uint8_t pin, uint8_t releasedPinState);
+    Pcf8574SwitchButton(PCF8574 *pcf8574, uint8_t pin, uint8_t id, uint8_t releasedPinState);
     PCF8574 *pcf;
     uint8_t buttonPin;
+    uint8_t buttonId;
     bool pressed;
     bool released;
     void begin();

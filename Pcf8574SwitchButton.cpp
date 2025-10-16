@@ -7,9 +7,10 @@
 #include "Arduino.h"
 #include "Pcf8574SwitchButton.h"
 
-Pcf8574SwitchButton::Pcf8574SwitchButton(PCF8574 *pcf8574, uint8_t pin, uint8_t releasedPinState) {
-  *pcf = *pcf8574;
+Pcf8574SwitchButton::Pcf8574SwitchButton(PCF8574 *pcf8574, uint8_t pin, uint8_t id, uint8_t releasedPinState) {
+  pcf = pcf8574;
   buttonPin = pin;
+  buttonId = id;
   pressed = false;
   released = true;
   _releasedPinState = releasedPinState;
@@ -45,11 +46,11 @@ bool Pcf8574SwitchButton::stateChanged(bool forceReadNow, byte debounceTime) {
     // debounce delay, so take it as the actual current state:
 
     // if the button has changed:
-    if (_lastSteadyState != _releasedPinState && _currentState == _releasedPinState) {
+    if (_lastSteadyState == _releasedPinState && _currentState != _releasedPinState) {
       pressed = true;
       released = false;
       stateChanged = true;
-    } else if (_lastSteadyState == _releasedPinState && _currentState != _releasedPinState) {
+    } else if (_lastSteadyState != _releasedPinState && _currentState == _releasedPinState) {
       pressed = false;
       released = true;
       stateChanged = true;
